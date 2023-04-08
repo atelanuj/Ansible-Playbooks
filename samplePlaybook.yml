@@ -1,0 +1,6 @@
+---                       #Sample Playbook
+- hosts: grp1              #select node/group
+  user: root               #select user on node
+  become: yes              #sudo privillage
+  connection: ssh          #through ssh connectivity
+  gather_facts: yes

@@ -1,0 +1,18 @@
+---
+- hosts: grp1
+  user: root
+  connection: ssh
+  become: yes
+  vars:
+    var1: nginx
+  tasks:
+    - name: install '{{var1}}'
+      apt:
+        pkg: "{{var1}}"
+        state: present
+      notify: start nginx
+  handlers:
+    - name: start nginx
+      service:
+        name: nginx
+        state: started

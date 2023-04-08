@@ -1,0 +1,26 @@
+---
+- hosts: grp1
+  connection: ssh
+  user: root
+  become: yes
+  vars:
+   packagename1: tree
+   packagename2: docker.io
+  tasks:
+  #task1
+  - name: installing '{{packagename1}}'     #'{{variable}}'
+    apt:
+     pkg: '{{packagename1}}'
+     state: present
+  #task2
+  - name: install '{{packagename2}}'
+    apt:
+     pkg: '{{packagename2}}'
+     state: present
+  #task3
+  - name: copy operation
+    copy:
+     src: /root/anuj2.txt 
+     dest: /tmp/
+    
+      

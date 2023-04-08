@@ -1,0 +1,25 @@
+---
+###########################################
+#target
+###########################################
+- hosts: grp1
+  become: yes
+  connection: ssh
+  user: root
+###########################################
+#variables
+###########################################
+  vars:
+   var1:                   #Loop Variables
+   - docker.io
+   - nginx
+   - tree
+###########################################
+#tasks
+###########################################
+  tasks:
+  - name: Installing '{{var1}}'
+    apt:
+     pkg: '{{item}}'
+     state: present
+    with_items: '{{var1}}'  #Loop

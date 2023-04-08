@@ -1,0 +1,24 @@
+---
+- hosts: grp1
+  user: root
+  become: yes
+  connection: ssh
+  
+  vars:
+   packages:
+   - docker.io
+   - nginx
+   - apache2
+   - tree
+
+  tasks:
+  - name: Installing on Debian'{{packages}}'
+    when: ansible_os_family == "Debian"      #Condition
+    command: apt install '{{item}}' -y
+    with_items: '{{packages}}'
+
+  - name: Installing on Amazon,Redhat
+    when: ansible_os_family == "Redhat"      #Condition
+    command: yum install '{{item}}' -y
+    with_items: '{{packages}}'
+ 

@@ -1,0 +1,16 @@
+---
+- hosts: grp1
+  user: root
+  become: yes
+  connection: ssh
+  tasks:
+  - name: install nginx  #task1
+    apt:
+      pkg: nginx
+      state: present
+  - name: nginx status   #task2
+    service:
+      name: nginx
+      state: stopped      
+
+

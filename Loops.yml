@@ -1,0 +1,16 @@
+---
+- hosts: grp1
+  user: root
+  connection: ssh
+  become: yes
+  vars:
+  - names:
+    - aryan
+    - mom
+    - papa
+  tasks:
+  - name: user add
+    user:
+        name: '{{item}}'
+        state: present
+    with_items: '{{names}}'
